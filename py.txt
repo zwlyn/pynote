@@ -1,0 +1,715 @@
+﻿-----------------------------------------------------------------
+语法：isinstance（object，type）
+
+作用：来判断一个对象是否是一个已知的类型。 
+
+其第一个参数（object）为对象，第二个参数（type）为类型名(int...)或类型名的一个列表((int,list,float)是一个列表)。其返回值为布尔型（True or flase）。
+
+若对象的类型与参数二的类型相同则返回True。若参数二为一个元组，则若对象类型与元组中类型名之一相同即返回True。
+
+例如：
+>>> a = 4
+>>> isinstance (a,int)
+True
+>>> isinstance (a,str)
+False
+>>> isinstance (a,(str,int,list))
+True
+--------------------------------------------------------------------------
+logger.info(json.dumps(self.start_map,indent = 4))     #字典美化输出
+--------------------------------------------------------
+SQLite，是一款轻型的数据库，是遵守ACID的关系型数据库管理系统，它包含在一个相对小的C库中。它是D.RichardHipp建立的公有领域项目。它的设计目标是嵌入式的，而且目前已经在很多嵌入式产品中使用了它，它占用资源非常的低，在嵌入式设备中，可能只需要几百K的内存就够了。它能够支持Windows/Linux/Unix等等主流的操作系统，同时能够跟很多程序语言相结合
+支持python
+---------------------------------------------------
+flask，后端向前端传输数据：
+单个数据： return render_template('需要传参网址',xx=u'xx')
+前端接收{{xx}}
+
+多个数据：先把数据写进字典，字典整体传 
+return render_template('需要传参网址','**字典名')
+前端接收：
+{{字典名.变量名}}
+------------------------------
+正则表达式：
+https://deerchao.net/tutorials/regex/regex.htm
+
+----------------------------------------------------------------------
+【解决】多线程win32com ，返回 (-2147221008, '尚未调用 CoInitialize。', None, None)
+先import pythoncom，而且不用安装，win32com里自带
+在初始化的地方前后加上 pythoncom.CoInitialize()
+
+pythoncom.CoInitialize()#加上的
+word = DispatchEx("Word.Application")
+pythoncom.CoInitialize()#加上的
+---------------------------------
+python str byte 转换
+复制代码
+# bytes object  
+ b = b"example"  
+  
+ # str object  
+ s = "example"  
+  
+ # str to bytes  
+ bytes(s, encoding = "utf8")  
+  
+ # bytes to str  
+ str(b, encoding = "utf-8")  
+  
+ # an alternative method  
+ # str to bytes  
+ str.encode(s)  
+  
+ # bytes to str  
+ bytes.decode(b)  
+----------------------------------------------
+python操作excel:
+openpyxl
+挺好的教程网站：
+https://automatetheboringstuff.com/chapter12/
+-------------------------------------------------------------
+linux 配置永久别名：
+在/etc/bash.bashrc  中的设置
+alias xxx=‘xxx’ alias Desktop='cd /home/zw/Desktop/'
+alias workspace='cd /home/zw/Desktop/workspace'
+-------------------------------------------------------
+#创建菜单栏和退出的菜单栏：
+    def createMenu(self):
+        self.menuBar = QMenuBar()
+
+        self.fileMenu = QMenu("&File", self)
+        self.exitAction = self.fileMenu.addAction("E&xit")
+        self.menuBar.addMenu(self.fileMenu)
+
+        self.exitAction.triggered.connect(self.accept)
+
+-----------------------------------------------------------
+#实验观察Stretch弹性变量的作用：
+        button1 = QPushButton("button1")
+        vbox = QVBoxLayout()
+        vbox.addStretch(100)
+        vbox.addWidget(button1)
+        vbox.addStretch(5000)
+    就像两根弹簧在较力，button被挤来挤去
+-----------------------------------------------------------------
+
+lbl3 = QLabel('zw', self)             # label，文本标签
+lbl3.move(15, -10)                    # x, y 其中（0,0）在左上角，其中x，y可为负数，位于反方向
+
+self.setGeometry(300, 300, 250, 150)  # x, y, 宽, 高
+self.setWindowTitle('Absolute')       # 绝对定位
+------------------------------------------------
+deepin下安装qt5：
+
+#sudo apt-get install qt5-default qt5-qmake g++ qtcreator   # 报出依赖问题
+sudo aptitude install qt-default qt5-qmake g++ qtcreator    # 解决包依赖冲突问题
+-----------------------------------------------
+ctrl+shift+d键，可以复制多行
+ctrl+shift+[  ,折叠代码
+Ctrl+shift+]  ,展开代码
+ctrl+shift+1  ,折叠所有代码
+ctrl+shift+0  ,展开所有代码
+Ctrl+← 向左单位性地移动光标，快速移动光标。
+
+Ctrl+→ 向右单位性地移动光标，快速移动光标。
+
+shift+↑ 向上选中多行。
+
+shift+↓ 向下选中多行。
+------------------------------------------
+sublime中设置python编译器（win）
+{
+"cmd": ["D:/Python27/python.exe","-u","$file"],
+        "file_regex": "^[ ]*File \"(...*?)\",line ([0-9]*)",
+        "selector": "source.python"
+}
+
+sublime中设置python编译器（linux）
+{
+  "cmd":["/usr/local/bin/python3","-u","$file"],
+  "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+"env": {"PYTHONIOENCODING": "utf8"},
+"selector": "source.python"
+}
+------------------------------------------------
+cat xx.txt >> 1.txt  #内容追加
+cat xx.txt > 1.txt   #内容覆盖
+-------------------------------------------
+deepin安装mysql5.7
+
+https://blog.csdn.net/sinat_37064286/article/details/82224562
+对mysql的相关操作：
+关于数据库服务的命令
+　　停止MySQL数据库服务：
+　　sudo systemctl stop mysql.service
+　　启动MySQL数据库服务：
+　　sudo systemctl start mysql.service
+重启MySQL数据库服务：
+　　sudo systemctl restart mysql.service
+　　查看MySQL运行状态：
+　　sudo systemctl status mysql.service
+5.查看mysqld进程是否开启
+pgrep mysqld
+如果进程开启，命令将返回该进程的id。
+--------------------------------------
+#while install oracle odbc:
+rpm -i xxxxxx.rpm # raise error about alien
+
+apt-get install alien
+alien <package name>.rpm  #then it will produce a xxxxx.deb
+dpkg -i <package name>.deb   # 安装软件
+-----------------------------------------------
+dpkg -R 安装一个目录下所有的软件包
+dpkg -L python3.5  # 显示一个包安装到系统里面的文件目录信息
+dpkg -r python3.5  # 删除软件包（保留其配置信息）
+dpkg -P xxxx       # 删除一个包（包括删除其配置信息）
+-----------------------------------------
+lsof -p 进程号   #列出与该进程号相关的文件
+========================================
+Anaconda安装：
+1.官网下载对应版本
+2.bash Anacondaxxxx.sh
+3.输入 conda  验证
+4.
+conda list
+设置Anaconda环境:
+conda search "^python$"
+conda create --name my_python python=3
+source activate my_python #激活环境
+conda install --name my_python requests
+conda info -e  #查看虚拟python版本 
+---------------------------------------
+linux 打开txt文件乱码解决：
+#linux 下使用的编码是utf-8,而windows使用的是gb18030，因此linux显示在windows编辑过的中文就会显示乱码，
+#使他们使用的编码不同导致的
+进入txt文件所在目录，输入：
+iconv -f gb18030 -t utf8 py.txt -0 1.txt    #把gb18030编码的py.txt转换为utf8的1.txt
+---------------------------------------------------------
+deepin安装pip3：
+sudo apt install  python3-pip
+
+deepin下包括无法用pip安装包等各种问题
+https://www.jianshu.com/p/de6abe2245fb
+-----------------------------------------------------
+scp命令：
+1.从本地复制到远程：
+scp -r /home/music/ root@192.168.3.236:/home/root/
+
+2.从远程复制到本地当前文件夹下：
+scp root@192.168.3.236:/root/1.txt ./
+------------------------------------------------------------------
+pipenv 用于解决生产和开发环境包的依赖问题
+
+https://www.jianshu.com/p/d08a4aa0008e
+
+pip install pipenv
+#在指定目录下创建虚拟环境，会使用本地默认版本的python
+pipenv install      (指定版本创建如： pipen --python 3.6)
+#激活虚拟环境
+pipenv shell
+#安装第三方模块，运行后生成Pipfile和Pipfile.lock文件
+如：pipenv install flask 
+#如果指向安装在开发环境才使用的包，这么做：
+pipenv install pytest --dev
+
+#构建生产环境，运行如下命令，把当前环境的模块lock住，它会更新Pipfile.lock文件，不用编#辑
+pipenv lock
+
+#之后将代码和Pipfile.lock放到生产环境，执行下面的代码，就可以创建和开发环境一样的环境，因为Pipfile.lock里记录了所有包的子依赖包的确切版本
+pipen install --ignore-pipfile
+
+#如果要在另一个开发环境做开发则将代码和Pipfile复制过去，运行如下命令：
+pipenv install --dev 
+-------------------------------------------------------
+V2EX  >Python
+如何自动探测、删除废弃的包
+pip list --local --outdated --format freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 sudo -H pip3 install -U
+------------------------------------------------------------
+在windows server2012 上配置python环境变量时，一个空格不能有
+------------------------------------------------------------
+ubuntu 源
+在/etc/apt/sources.list文件前面添加如下条目
+#添加阿里源
+deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+
+最后执行如下命令更新源
+##更新
+sudo apt-get update
+sudo apt-get upgrade
+------------------------------------------------------------------------
+assert 断言语句和 if 分支有点类似，它用于对一个 bool 表达式进行断言，如果该 bool 表达式为 True，该程序可以继续向下执行；否则程序会引发 AssertionError 错误。
+有读者可能会问，明明 assert 会令程序崩溃，为什么还要使用它呢？这是因为，与其让程序在晚些时候崩溃，不如在错误条件出现时，就直接让程序崩溃。
+ assert n > 0
+.............
+--------------------------------------------
+"""文件按行读取"""
+import time
+def main():
+    # 一次性读取整个文件内容
+    with open('致橡树.txt', 'r', encoding='utf-8') as f:
+        print(f.read())
+
+    # 通过for-in循环逐行读取
+    with open('致橡树.txt', mode='r') as f:
+        for line in f:
+            print(line, end='')
+            time.sleep(0.5)
+    print()
+
+    # 读取文件按行读取到列表中
+    with open('致橡树.txt') as f:
+        lines = f.readlines()
+    print(lines)
+    
+
+if __name__ == '__main__':
+    main()
+-------------------------------------------------------------------------------
+”如果try中没有异常，那么except部分将跳过，执行else中的语句（前提是try里没有返回值）
+finally是无论是否有异常，最后都要做的一些事情。”（无论try里是否有返回值）
+这里补充一句，在含有return的情况下，并不会阻碍finally的执行。（但是会阻碍else）
+----------------------------
+linux 下 新建用户 ：
+useradd zw
+passwd zw
+-----------------------------
+centos下安装sublime
+https://blog.csdn.net/q2826621520/article/details/53782103
+----------------------------
+linux中端口占用问题
+1、强制杀死该端口进程
+
+      sudo fuser -k -n tcp 80
+
+2、根据PID关闭某个被占用的端口
+
+      netstat -tunlp | grep 80
+
+      lsof -i:80
+
+      sudo kill -9 PID
+------------------------------
+和静态方法比较类似，Python还可以在类中定义类方法，类方法的第一个参数约定名为cls，它代表的是当前类相关的信息的对象（类本身也是一个对象，有的地方也称之为类的元数据对象），通过这个参数我们可以获取和类相关的信息并且可以创建出类的对象
+...
+  @classmethod
+    def now(cls):
+        ctime = localtime(time())
+        return cls(ctime.tm_hour, ctime.tm_min, ctime.tm_sec)
+...
+    # 通过类方法创建对象并获取系统时间
+    clock = Clock.now()
+-------------------------------------------------------------------------------------------------
+如果我们需要限定自定义类型的对象只能绑定某些属性，可以通过在类中定义__slots__变量来进行限定。需要注意的是__slots__的限定只对当前类的对象生效，对子类并不起任何作用。
+# 限定Person对象只能绑定_name, _age和_gender属性
+    __slots__ = ('_name', '_age', '_gender')
+------------------------------------------------------------------------------------------------------
+python中使用单下划线示意变量是受保护的，（但还是可以直接访问）不过为了安全起见还是用@property包装器
+来包装getter（访问器）和setter（修改器）方法	
+class Persion(object):
+	def __init__(self, name, age):
+		self._name = name
+		self._age = age
+	@property
+	def name(self):
+		return self._name
+	@name.setter
+	def name(self, name):
+		self._name = name
+
+def main():
+	person = Persion('王大锤', 12)
+	logger.info(person.name)
+	person.name = 'zw'
+	logger.info(person.name)
+---------------------------------------------
+sublime中python结束执行：
+{ "keys": ["ctrl+shift+c"], "command": "cancel_build" }
+--------------------------------------------------
+class Test:
+
+    def __init__(self, foo):
+        self.__foo = foo   #__foo为私有属性
+
+    def __bar(self):      #__bar为私有方法
+        print(self.__foo)
+        print('__bar')
+正常  对象.__foo 无法访问
+但     对象._Test__foo  可以访问，就是只是访问复杂了一点
+
+-------------------------------------------------------
+#注意列表命名时不要和关键字list重合
+list1=[11,22,244] 中的删除： 
+#按照内部元素删除
+list1.remove(11)  
+#按照索引删除
+list1.pop(0)
+#按照索引删除
+del(list1[0]) 
+---------------------------------------------------
+ # 集合的交集、并集、差集、对称差运算
+    print(set1 & set2)
+    # print(set1.intersection(set2))
+    print(set1 | set2)
+    # print(set1.union(set2))
+    print(set1 - set2)
+    # print(set1.difference(set2))
+    print(set1 ^ set2)
+    # print(set1.symmetric_difference(set2))
+    # 判断子集和超集
+    print(set2 <= set1)
+    # print(set2.issubset(set1))
+------------------------------------------------
+windows    清屏：os.system("cls")
+centos7     清屏： os.system("clear")
+-------------------------------------------------------------
+我们可以通过下面的代码来了解字符串的使用。
+
+def main():
+想要去除中间字符，可以使用replace()函数
+ss = '我的电话是18827038663，也是微信号，\n 请加入，谢谢\n\n\n'
+print(ss.replace('\n', ''))
+
+结果：
+我的电话是18827038663，也是微信号， 请加入，谢谢
+
+
+
+
+    str1 = 'hello, world!'
+    # 通过len函数计算字符串的长度
+    print(len(str1))  # 13
+    # 获得字符串首字母大写的拷贝
+    print(str1.capitalize())  # Hello, world!
+    # 获得字符串变大写后的拷贝
+    print(str1.upper())  # HELLO, WORLD!
+    # 从字符串中查找子串所在位置
+    print(str1.find('or'))  # 8
+    print(str1.find('shit'))  # -1
+    # 与find类似但找不到子串时会引发异常
+    # print(str1.index('or'))
+    # print(str1.index('shit'))
+    # 检查字符串是否以指定的字符串开头
+    print(str1.startswith('He'))  # False
+    print(str1.startswith('hel'))  # True
+    # 检查字符串是否以指定的字符串结尾
+    print(str1.endswith('!'))  # True
+    # 将字符串以指定的宽度居中并在两侧填充指定的字符
+    print(str1.center(50, '*'))
+    # 将字符串以指定的宽度靠右放置左侧填充指定的字符
+    print(str1.rjust(50, ' '))
+    str2 = 'abc123456'
+    # 从字符串中取出指定位置的字符(下标运算)
+    print(str2[2])  # c
+    # 字符串切片(从指定的开始索引到指定的结束索引)
+    print(str2[2:5])  # c12
+    print(str2[2:])  # c123456
+    print(str2[2::2])  # c246
+    print(str2[::2])  # ac246
+    print(str2[::-1])  # 654321cba
+    print(str2[-3:-1])  # 45
+    # 检查字符串是否由数字构成
+    print(str2.isdigit())  # False
+    # 检查字符串是否以字母构成
+    print(str2.isalpha())  # False
+    # 检查字符串是否以数字和字母构成
+    print(str2.isalnum())  # True
+    str3 = '  jackfrued@126.com '
+    print(str3)
+    # 获得字符串修剪左右两侧空格的拷贝
+    print(str3.strip())
+-------------------------------------------------------------------------
+Python查找一个变量时会按照“局部作用域”、“嵌套作用域”、“全局作用域”和“内置作用域”的顺序进行搜索
+if __name__ == '__main__':
+    a = 100  #a为全局变量
+----------------------------------------------------------
+# 在参数名前面的*表示args是一个可变参数
+# 即在调用add函数时可以传入0个或多个参数
+def add(*args):
+    sum = 0
+    for num in args:
+        sum += num
+    return sum
+logger.info(add(1,2,3,2,3,32,3,23,2))
+
+在Python中，函数的参数可以有默认值，也支持使用可变参数，所以Python并不需要像其他语言一样支持函数的重载，因为我们在定义一个函数的时候可以让它有多种不同的使用方式：
+
+python 默认值定义需要写在函数的最后一个参数否则报non-default argument follows default argument 错
+如：	def say(words, language  = 'English'):
+--------------------------------------------------------
+pyqt写界面
+---------------------------------------------------
+zhao520liu@gmail.com   
+-------------------------------------------------------------------------
+# __name__是Python中一个隐含的变量它代表了模块的名字
+# 只有被Python解释器直接执行的模块的名字才是__main__
+if __name__ == '__main__':
+-------------------
+import module3
+# 导入module3时 不会执行模块中if条件成立时的代码 因为模块的名字是module3而不是__main__
+-------------------------------------------------------------
+# 在参数名前面的*表示args是一个可变参数
+# 即在调用add函数时可以传入0个或多个参数
+def add(*args):
+------------------------------------------------
+// 表示整数除法
+------------------------------------------------------------------------------------------
+系统学习python
+建议楼主Python入门的话看《Python入门实践》，这本书配合廖雪峰的看；数据科学的话，推荐《利用Python进行数据分析》和《Python数据科学手册》这两本，前者主要介绍numpy和pandas的用法，例子较多，后者补充了前者对numpy和pandas语法原理介绍的不足和一些高级用法，还增加了matplotlib和sklearn的讲解。看完这其中一本，就基本上可以独立看大部分官方文档了。
+其实现在我也在研读这三本书，也就在去年12月初开始系统学Python
+--------------------------------------------
+测试代码如上，poll函数返回码：
+0 正常结束；  1 sleep； 2 子进程不存在； -15 kill； None 在运行
+----------------------------------------------------------------
+python 定时器：https://www.jianshu.com/p/403bcb57e5c2
+--------------------------------------------------------------------------------
+git的分支冲突处理
+https://www.liaoxuefeng.com/wiki/896043488029600/900004111093344
+--------------------------------------------------------------------------------------------------------------
+inux mv 命令实现文件的移动，同时可以用它实现文件的重新命名比如： mv dir.py ./dic.py   #将当前目录下的dir.py 重命名为dic.py
+-----------------------------------------------------------------------------
+python 规划文件路径，使用字典的数据结构：
+        self.paths = {}
+        self.rootDir = os.sep.join([os.getcwd(), self.now_time])
+        self.taskDir = os.sep.join([self.rootDir, "%s" % self.now_time_s])
+        self.mkdirs()
+     
+       def mkdirs(self):
+        if not os.path.exists(self.taskDir):
+            os.makedirs(self.taskDir)
+
+        pathDirs = ["results", "screenshots", "simplePDFs", "testPDFs", "lastResult"] 
+        for f in pathDirs:
+            p = os.sep.join([self.taskDir, f])
+            if not os.path.exists(p):
+                os.makedirs(p)
+                self.paths[f] = p
+-------------------------------------------------------------------------------------
+python 任何文件的拷贝：
+def copy(path):
+    with open(path,'rb') as f:    #‘rb’以二进制形式读取
+        content = f.read()
+        with open('234.pdf','wb') as lf:   #“wb”新建文件并且以二进制的形式写
+            lf.write(content)
+copy('61.pdf')
+------------------------------------------------------------------------------
+python 小数点后留2位
+>>> round(6.333333,2)
+6.33
+--------------------------------------------------------------------------------------
+如何使用git合理地做代码的修改：1.git stash    #暂存自己的修改
+2.将原先库中的代码pull下来
+3.git stash pop   #进行代码对比修改
+-----------------------------------------------------------------------------------------
+python多线程知识点：
+知识点一：
+当一个进程启动之后，会默认产生一个主线程，因为线程是程序执行流的最小单元，当设置多线程时，主线程会创建多个子线程，在python中，默认情况下（其实就是setDaemon(False)），主线程执行完自己的任务以后，就退出了，此时子线程会继续执行自己的任务，直到自己的任务结束，例子见下面一。
+
+知识点二：
+当我们使用setDaemon(True)方法，设置子线程为守护线程时，主线程一旦执行结束，则全部线程全部被终止执行，可能出现的情况就是，子线程的任务还没有完全执行结束，就被迫停止，例子见下面二。
+
+知识点三：
+此时join的作用就凸显出来了，join所完成的工作就是线程同步，即主线程任务结束之后，进入阻塞状态，一直等待其他的子线程执行结束之后，主线程在终止，例子见下面三。
+-----------------------------------------------------------------------------------
+python自行添加依赖：首先重定义一个site-packages，之后再‘干净’的环境下进行导入模块，从而得到程序需要的干净的所有的包，之后将其拷贝到程序的目录中供它使用。
+sys.path.insert(1, path)，定义搜索路径的优先顺序，序号从0开始，表示最大优先级，sys.path.insert()加入的是临时搜索路径，程序退出后失效。使用sys.path.append()方法可以临时添加搜索路径，方便更简洁的import其他包和模块。这种方法导入的路径会在python程序退出后失效。
+
+------------------------------------------------------------------------
+将pdf转化为图片
+https://github.com/Belval/pdf2image/blob/master/pdf2image/pdf2image.py
+
+from pdf2image import convert_from_path, convert_from_bytes
+images_from_path = convert_from_path(os.sep.join([os.getcwd(),'26.pdf']),output_folder=os.getcwd(),output_file='3', fmt='png')
+print(images_from_path)
+---------------------------------------------------------------------
+用 scp 远程获取文件或文件夹,放在当前目录：
+$ scp djf2@192.168.3.70:/home/vfsroot/reportjson/TpceAutoTest.json .
+$ scp -r djf2@192.168.3.70:/home/vfsroot/reportjson/TpceAutoTest.json .
+------------------------------------------------------------------
+linux修改文件夹下所有文件权限
+chmod -R 755 /var/www/html/test.com
+------------------------------------------------------------------
+centos7下pip下载慢，更改源：
+https://blog.csdn.net/hopygreat/article/details/78344933
+-------------------------------------------------------------------
+centos 7上安装python3.7：
+https://blog.csdn.net/qq_36288025/article/details/82534508
+----------------------------------------------------------------
+使用python画图：pyecharts：
+https://blog.csdn.net/yilulvxing/article/details/87451450?utm_source=app
+
+
+画图也可以使用：mathplotlib
+
+解决动态画图：
+https://blog.csdn.net/zhanghao3389/article/details/82685072
+-------------------------------------------------------------------
+json.dumps() 用于将字典转换为字符串格式
+
+json.loads() 用于将字符串转换为字典格式
+--------------------------------------------------------------------------
+好的python库：https://www.yuque.com/docs/share/fe605a94-9fb5-4983-ae20-82de611f4600
+和github上的awesome-python
+https://github.com/vinta/awesome-python
+
+学习python多看官方文档多google，多看英文
+-----------------------------------------------------------------------
+python发送email
+https://www.cnblogs.com/yufeihlf/p/5726619.html
+导入email包失败，因为没有必要导入，它是基础模块，只要保证当前文件所在目录中没有email.py命名
+文件干扰就行，我错在自己创建了email.py   ≧ ﹏ ≦
+
+qq邮箱授权码：bmwjwhlkbqgfhadd
+网易邮箱授权码：a18757219977
+
+-----------------------------------------------------------------
+#os.getcwd()
+#os.chdir(os.path.abspath('.'))   #存储在当前工作路径，指cmd下的当前目录
+--------------------------------------------------------------
+包：https://www.cnblogs.com/lich1x/p/10150033.html
+包的本质就是一个包含有__init__.py文件的文件夹
+导入包其实就是在导入包下的__init__.py，那，为何要用包？
+因为功能太多了，一个py文件写不下了，所以就打包成为一个众多功能的集合体
+---------------------------------------------------------------------
+任务：python join 来规划目录；
+封装测试过程，创建类和函数；
+模块：
+ from fibo import fib, fib2  
+#这个声明不会把整个fibo模块导入到当前的命名空间中，它只会将fibo里的fib函数引入进来。
+---------------------------------------------------------------------
+#定义构造方法
+	def __init__(self,n,a,w):
+		self.name=n
+		self.age=a
+		self.__weight=w
+----------------------------------------------------------------------
+日志文件 import logging<-------
+https://www.cnblogs.com/Nicholas0707/p/9021672.html
+logging.debug("msg1")
+logging.info("msg2")
+logging.warning("msg3")
+logging.error("msg4")
+logging.critical("msg5")
+
+----------------------------------------------------------------------
+乱写、不写shell的第一行会报错，因为第一行的内容指定了shell脚本解释器的路径，而且这个指定路径只能放在文件的第一行：#！/bin/bash   或     
+#!/bin/sh
+-----------------------------------------------------------------------
+用python快速搭建HTTP服务和文件共享服务：
+
+nohup python -m SimpleHTTPServer 10000 & 
+ #使得服务在后台不间断运行，其中nohup是不间断的意思，而&即and是指后台的意思
+
+	python -m SimpleHTTPServer [port]
+请求方：curl “http://localhost:8000/test" -v
+---------------------------------适用于2.7python
+	
+
+python  -m http.server 端口
+----------------------------------适用于python3
+
+https://blog.csdn.net/danchu/article/details/75028351
+---------------------------------------------------------------------------------
+将python文件生成.exe 文件：
+https://blog.csdn.net/zhe_ge_sha_shou/article/details/85233996
+-------------------------------------------------------------------------
+控制计算机的文件：
+https://www.cnblogs.com/FengZiQ/p/8532141.html
+如：
+import shutil
+import os
+#盘符大小写都可以的,将桌面的123.txt复制到e盘下
+#shutil.copy("c:\\users\\zw\\desktop\\123.txt","e:") 
+
+#复制并重命名新文件
+#shutil.copy("C:\\users\\zw\\desktop\\123.txt","d:\\666.txt")
+
+#复制整个目录(备份)
+shutil.copytree("C:\\users\\zw\\desktop\\666","D:\\777")
+---------------------------------------------------------------------------
+data_json = json.dumps({
+  "customer": 1000,
+  "initaldays": 60,
+  "scalefactor":500,
+  "uptime": 0,
+  "testtime": 1,
+  "concurrency": 2,
+  "filepath":"/home/tpce/tpceConf",
+  "dbconfig": {
+    "ip": "192.168.3.100",
+    "port": 1521,
+    "username": "tpce1",
+    "password": "tpce1",
+    "dbname": "ORCL",
+    "dbtype": "oracle"
+  }
+}) 
+
+
+#暂停程序(5s)：
+#time.sleep(5)
+jsonData=json.loads(data_json)
+print (jsonData['testtime']*60+jsonData['uptime']*60+10)
+
+a=time.time()
+print(a)
+
+b=time.localtime(a)
+print(b)
+#输出json文件
+
+os.getcwd()
+os.chdir(r'C:\Users\zw\Desktop') #存储在绝对路径下
+#os.chdir(os.path.abspath('.'))   //存储在用户路径下
+#os.chdir(os.getcwd())               #获取当前工作目录路径同上
+#写入程序
+f=open('filename.json','w')
+f.write(data_json+"\n\n\n")
+f.write(data_json2)
+f.close
+----------------------------------------------------------------------------------
+
+
+在80服务器上执行 python自带的http文件传输服务，从本机请求文件，且文件命名和规划按照规范
+git config --global user.name "zw"
+git config --global user.email "1666013677"
+ssh-keygen -t rsa -C "1666013677@qq.com"
+git config --global alias.ts status
+
+git修改项目：
+6、使用 git pull origin master 命令，将码云上的仓库pull到本地文件夹
+
+zw@zw-pc MINGW64 /d/workspace/tpceautorunner (master)
+$ git add .
+
+zw@zw-pc MINGW64 /d/workspace/tpceautorunner (master)
+$ git commit -m "TPCEAutoRunner.py"
+[master 0ba6216] TPCEAutoRunner.py
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+
+$ git push -u origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 318 bytes | 106.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To ssh://192.168.3.70:2224/zhaowei/tpceautorunner.git
+   e47db70..0ba6216  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+zw@zw-pc MINGW64 /d/workspace/tpceautorunner (master)
+-----------------------------------------------
+配置环境变量
+echo $PATH
+export PATH=$PATH:/sbin
+
