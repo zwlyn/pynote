@@ -1,0 +1,136 @@
+-------------------------------------------------------------------------------------------------------------------------------
+测试相关的服务器：
+100数据库连接
+192.168.3.100
+root/yfjz512
+
+66数据库连接
+192.168.3.66
+root/yfjz@db
+
+192.168.3.80,root/yfjz@test;192.168.3.66,root/yfjz@db;192.168.3.67,root/yfjz@test;192.168.3.68,root/yfjz@test
+-----------------------------------------------------------------------------------------------------------------------------------------
+常用测试数据库链接
+type：oracle
+1、tpce-ORACLE1g:ip=192.168.3.66(100),port=1521,dbname=ORCL(100为tpcetest),username=tpce1,password=tpce1
+
+2、tpce-ORACLE30g:ip=192.168.3.66(100),port=1521,dbname=ORCL(100为tpcetest),username=tpce5,password=tpce5
+
+3、tpce-ORACLE70g:ip=192.168.3.66(100),port=1521,dbname=ORCL(100为tpcetest),username=tpce10,password=tpce10
+
+4、tpce-ORACLE100g:ip=192.168.3.100,port=1521,dbname=tpcetest,username=tpce15,password=tpce15
+
+type：mysql
+5、tpce-MYSQL1g:ip=192.168.3.100,port=3307,dbname=tpce1,username=root,password=mysql
+
+6、tpce-MYSQL30g:ip=192.168.3.100,port=3307,dbname=tpce5,username=root,password=mysql
+
+7、tpce-MYSQL70g:ip=192.168.3.100,port=3307,dbname=tpce10,username=root,password=mysql
+
+type：dm
+8、tpce-达梦1g:ip=192.168.3.66(100),port=5236,dbname=TPCE1,username=TPCE1,password=123456789
+
+9、tpce-达梦30g:ip=192.168.3.66(100),port=5236,dbname=TPCE5,username=TPCE5,password=123456789
+
+10、tpce-达梦70g:ip=192.168.3.66(100),port=5236,dbname=TPCE10,username=TPCE10,password=123456789
+
+type：kingdbase
+11、tpce-人大金仓1g:ip=192.168.3.66(100),port=54321,dbname=tpce1,username=tpce1,password=tpce1
+
+12、tpce-人大金仓30g:ip=192.168.3.66(100),port=54321,dbname=tpce5,username=tpce5,password=tpce5
+
+13、tpce-人大金仓70g:ip=192.168.3.66(100),port=54321,dbname=tpce10,username=tpce10,password=tpce10
+
+14、tpcds-ORACLE1G:ip=192.168.3.66(120),port=1521,dbname=ORCL(tpcds),username=tpcds(tpcds1g),password=tpcds(tpcds1g)
+
+15、tpcds-ORACLE1T:ip=192.168.3.120,port=1521,dbname=tpcds,username=tpcds1t,password=tpcds1t
+
+16、tpcds-DM (1g): ip=192.168.3.100,port=5236,dbname=tpcds1g,username=tpcds1g,password=123456789
+
+17、tpcds-kdb(1g):ip=192.168.3.100,port=54321,dbname=TPCDS1,username=TPCDS1,password=TPCDS1
+
+18、benchmark factary(1g):username=bmf1g,password=bmf1g
+
+19、benchmark factary(30g):username=bmf30g,password=bmf30g
+
+20、benchmark factary(70g):username=bmf70g,password=bmf70g
+
+
+--------------------------------------------------------------------
+数据库启动/停止
+和连接数据库
+1、oracle：
+
+su - oracle
+
+lsnrctl stop
+
+lsnrctl start
+
+sqlplus / as sysdba
+
+shutdown immediate
+
+startup
+
+2、mysql：
+
+systemctl stop mariadb.service
+
+systemctl start mariadb.service
+
+3、达梦：
+
+su - dmdba
+
+service DmServiceDMSERVER.service stop 或者：/etc/rc.d/init.d/DmServicetpce stop 或者: /opt/dmdbms/bin/DmServiceDMSERVER stop
+
+service DmServiceDMSERVER.service start 或者：dmserver /u03/app/dm/data/tpce/dm.ini -noconsole & 或者:/opt/dmdbms/bin/DmServiceDMSERVER start
+
+4、人大金仓：
+
+su - kdbdba
+
+source ~/.bashrc
+
+sys_ctl stop -D /home/kdbdba/kdb/data/ &
+
+sys_ctl start -D /home/kdbdba/kdb/data/ &
+
+----------------------------------------------------------------------------------------------
+最新清数据
+说明：
+执行下条命令时，1g对应的是1000、30g对应的是5000，70g对应的是10000
+nohup ./tpce_oracle_data_recover.sh 1000 > data_recover.log &
+
+一、oracle清数据（100环境）
+su - oracle12
+cd /u03/tpce/ansi_oracle/
+nohup ./tpce_oracle_data_recover.sh 1000 > data_recover1g.log &
+tailf -n 200 data_recover1g.log
+data_recover(后面可以加数据规模1g、30g、70g)
+
+二、oracle清数据（66环境）
+su - oracle
+/home/u01/tpce/ansi_oracle
+nohup ./tpce_oracle_data_recover.sh 1000 > data_recover.log &
+tailf -n 200 data_recover.log
+
+
+三、dm清数据（100环境）
+su - dmdba
+cd /u03/tpce/ansi_dm/
+nohup ./tpce_dm_data_recover.sh 1000 > data_recover.log &
+tailf -n 200 data_recover.log
+
+四、jc清数据（100环境）
+su - kdb
+cd /u03/tpce/ansi_kdb/
+nohup  ./tpce_kdb_data_recover.sh  1000 > data_recover.log &
+tailf -n 200 data_recover.log
+
+五、mysql清数据（100环境）
+su - mysql
+cd /u03/tpce/ansi_mysql/
+nohup ./tpce_mysql_data_recover.sh 1000 > data_recover.log &
+tailf -n 200 data_recover.log
