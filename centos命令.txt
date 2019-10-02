@@ -1,0 +1,169 @@
+IP为127.0.0.1 修改命令    dhclient -v
+
+linux服务器清理磁盘空间
+https://blog.csdn.net/u012660464/article/details/78923011   
+tar zxvf unixODBC-2.3.4.tar.gz     解压缩
+netstat -anp | grep 端口号     查看端口号
+mstsc   远 程
+df -h 查看磁盘空间
+su - 用户名                   （切换用户）
+find / -name +查询内容        （查询语句）
+rm -rf                    （删除目录或文件）
+more                      （查看指定文件内容 ）
+more /proc/version        （查看Linux的版本）
+ps -ef | grep sys_restore    
+./control_tpce_new.sh 2(关闭服务)
+./control_tpce_new.sh 1(开启服务)
+./control_tpce-new.sh 3
+cd /otp/tpceConf进入查看日志目录
+tailf -n 200 tpce.log(查看tpce.log日志)
+tailf -n 200 CEServer31000log（查看CE日志）
+tailf -n 200 ME...(查看ME日志)
+df -h （查看磁盘空间大小）
+cp -a /tmp/dir1 . 复制一个目录到当前工作目录 
+isql -v dm50077641 TPCE1 123456789连接数据库 
+ps -ef | grep 8000查看工具
+telnet 192.168.3.80 50051      ping端口命令
+cat /etc/odbc.ini 查看数据库数据源
+du -sh + 文件目录（查看文件占用内存）
+history  查看使用过的命令
+mv file1 file2   把当前目录下的file1文件名改成file2，如果该目录下有file2，则覆盖以前的file2文件。
+ps -ef | grep java查看进程
+echo $JAVA_HOME  jdk安装路径
+关闭防火墙：
+firewall-cmd --state                 查看防火墙状态
+systemctl stop firewalld.service     停止firewall
+systemctl disable firewalld.service  禁止firewall开机启动
+cat /etc/redhat-release   查看centos版本
+wget http://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz   下载网站上的文件
+
+
+rm -f 文件   强制删除文件
+rm -f  *   删除当前目录所有文件
+rm -rf 文件夹   强制删除文件夹
+
+
+添加用户 test：
+adduser test
+删除用户test:
+userdel test
+删除用户以及用户目录：
+userdel -r test
+添加用户名密码
+passwd + 用户名
+
+给用户添加root权限
+chmod u+w /etc/sudoers
+vim /etc/sudoers
+进入后在root用户下添加需要给予权限的用户名称
+chmod u-w /etc/sudoers
+
+
+解压：
+解压.gz文件   tar -zxvf +文件名
+解压。zip文件， unzip +文件名
+
+
+
+locale -a
+export LANG=zh_CN.gbk
+
+mstsc 远程
+rz
+sz
+
+查看
+reids启动命令：
+  cd /opt/redis-5.0.5/src
+  ./redis-server ../redis.conf &
+
+nohup  xxx &   #后台不间断运行xxx
+
+/usr/libexec/pk-command-not-found: /usr/local/lib/libuuid.so.1: no version information available (required by /usr/lib64/libblkid.so.1)
+
+
+
+启动监听
+su - oracle 
+lsnrctl start
+
+oracle重启数据库
+sqlplus / as sysdba
+
+shutdown immediate
+
+startup
+
+退出数据库：quit
+切换root用户： exit
+
+mysql数据库登陆：mysql -u root（用户名） -p123456（密码）
+                          
+
+
+
+（select * from v$sessions where state = 'ACTIVE'
+测试 的时候， 不确定 工具是不是挂了，登录到所在数据库，执行下这个就可以了，能够看到当前 是不是有sql在执行）
+
+
+
+文件路径：/opt/lxp/Tpce/tpceConf_30
+
+
+jdk安装与环境变量配置：
+https://blog.csdn.net/pang_ping/article/details/80570011
+
+whereis java
+which java （java执行路径）
+echo $JAVA_HOME
+
+echo $PATH
+
+
+
+
+centos7操作SSH/SSHD服务
+
+查看状态：
+systemctl status sshd.service
+启动服务：
+
+systemctl start sshd.service
+重启服务：
+
+systemctl restart sshd.service
+开机自启：
+
+systemctl enable sshd.service
+
+
+
+
+
+
+
+
+
+
+创建组建
+ isql  -U SYSTEM -W 123456789 -d TPC   <<EOF1
+   
+ drop database  tpce$n;
+   
+ drop user tpce$n;
+   
+ create database tpce$n;
+ CREATE USER tpce$n  with superuser password 'tpce$n' VALID UNTIL  '2100-12-31';
+EOF1
+
+ isql  -U tpce$n -W tpce$n -d tpce$n  << EOF11
+   
+ CREATE TABLESPACE tpce$n  OWNER  tpce$n(NAME =tpce1$n   FILENAME ='tpce1$n' SIZE = 100 MAXSIZE = 16000  FILEGROWTH = 10);
+   
+ ALTER TABLESPACE  tpce$n  ADD DATAFILE (NAME =tpce2$n  FILENAME ='tpce2$n' SIZE = 100 MAXSIZE = 16000  FILEGROWTH = 10);
+   
+ ALTER TABLESPACE  tpce$n  ADD DATAFILE (NAME =tpce3$n  FILENAME ='tpce3$n' SIZE = 100 MAXSIZE = 16000  FILEGROWTH = 10);
+   
+ ALTER TABLESPACE  tpce$n  ADD DATAFILE (NAME =tpce4$n  FILENAME ='tpce4$n' SIZE = 100 MAXSIZE = 16000  FILEGROWTH = 10);
+
+EOF11
