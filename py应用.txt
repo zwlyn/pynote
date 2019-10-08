@@ -1,0 +1,90 @@
+flask，后端向前端传输数据：
+单个数据： return render_template('需要传参网址',xx=u'xx')
+前端接收{{xx}}
+
+多个数据：先把数据写进字典，字典整体传 
+return render_template('需要传参网址','**字典名')
+前端接收：
+{{字典名.变量名}}
+---------------------------------------------------
+正则表达式：
+
+https://deerchao.net/tutorials/regex/regex.htm
+---------------------------------------------------
+filename_list = os.path.isdir(full_pathname) # 得到文件夹下面，所有文件名列表
+filename_list.sort()   # 将文件名列表进行默认的排序
+加入默认排序不能满足，自定义函数来解决，这样比用lamda 可读性高，则代码的生存周期也会长
+---------------------------------------------------
+SQLite，是一款轻型的数据库，是遵守ACID的关系型数据库管理系统，它包含在一个相对小的C库中。它是D.RichardHipp建立的公有领域项目。它的设计目标是嵌入式的，而且目前已经在很多嵌入式产品中使用了它，它占用资源非常的低，在嵌入式设备中，可能只需要几百K的内存就够了。它能够支持Windows/Linux/Unix等等主流的操作系统，同时能够跟很多程序语言相结合
+支持python
+---------------------------------------------------
+python操作excel:
+
+openpyxl
+
+挺好的教程网站：
+
+https://automatetheboringstuff.com/chapter12/
+
+----------------------------------------------------
+PyQt5:
+	#创建菜单栏和退出的菜单栏：
+
+	    def createMenu(self):
+
+	        self.menuBar = QMenuBar()
+
+
+
+	        self.fileMenu = QMenu("&File", self)
+
+	        self.exitAction = self.fileMenu.addAction("E&xit")
+
+	        self.menuBar.addMenu(self.fileMenu)
+
+	        self.exitAction.triggered.connect(self.accept)
+
+
+	#实验观察Stretch弹性变量的作用：
+
+	        button1 = QPushButton("button1")
+
+	        vbox = QVBoxLayout()
+
+	        vbox.addStretch(100)
+
+	        vbox.addWidget(button1)
+
+	        vbox.addStretch(5000)
+
+	    就像两根弹簧在较力，button被挤来挤去
+
+	#文本标签位置，和界面大小，定位方式的设置：
+	lbl3 = QLabel('zw', self)             # label，文本标签
+
+	lbl3.move(15, -10)                    # x, y 其中（0,0）在左上角，其中x，y可为负数，位于反方向
+
+
+
+	self.setGeometry(300, 300, 250, 150)  # x, y, 宽, 高
+
+	self.setWindowTitle('Absolute')       # 绝对定位
+------------------------------------------------
+zhao520liu@gmail.com 
+------------------------------------------------
+将pdf转化为图片
+https://github.com/Belval/pdf2image/blob/master/pdf2image/pdf2image.py
+
+from pdf2image import convert_from_path, convert_from_bytes
+images_from_path = convert_from_path(os.sep.join([os.getcwd(),'26.pdf']),output_folder=os.getcwd(),output_file='3', fmt='png')
+print(images_from_path)
+---------------------------------------------------------------------  
+使用python画图：pyecharts：
+https://blog.csdn.net/yilulvxing/article/details/87451450?utm_source=app
+
+
+画图也可以使用：mathplotlib
+
+解决动态画图：
+https://blog.csdn.net/zhanghao3389/article/details/82685072
+-------------------------------------------------------------------
