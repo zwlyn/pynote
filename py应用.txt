@@ -69,6 +69,21 @@ PyQt5:
 	self.setGeometry(300, 300, 250, 150)  # x, y, 宽, 高
 
 	self.setWindowTitle('Absolute')       # 绝对定位
+
+
+	## 滑动条和lcd数字显示之前的信号和糟
+        lcd = QLCDNumber(self)
+        sld = QSlider(Qt.Horizontal, self)
+        sld.valueChanged.connect(lcd.display)
+
+    ## 重写了QWidget类中的 keyPressEvent()时间处理函数，按下Esc键退出程序
+        def keyPressEvent(self, e):
+         
+        if e.key() == Qt.Key_Escape:
+            self.close()
+    ## btn2.clicked.connect(self.buttonClicked)
+    按钮单机连接函数
+         
 ------------------------------------------------
 zhao520liu@gmail.com 
 ------------------------------------------------
